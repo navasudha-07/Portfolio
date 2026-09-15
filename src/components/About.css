@@ -1,0 +1,213 @@
+/* About.css */
+
+.about-section {
+  position: relative;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.about-card {
+  padding: 28px;
+}
+
+.about-card-wide {
+  grid-column: 1 / -1;
+}
+
+.about-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Contact list */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.ci-icon {
+  color: var(--accent-2);
+  flex-shrink: 0;
+}
+
+.contact-list a {
+  color: var(--text);
+  transition: color var(--dur-fast) ease;
+  word-break: break-all;
+}
+
+.contact-list a:hover {
+  color: var(--accent-2);
+}
+
+/* Language */
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lang-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.lang-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.lang-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.lang-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-2);
+  transition: background var(--dur-med) ease;
+}
+
+.lang-dot.filled {
+  background: var(--accent-2);
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+.lang-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.lang-fill {
+  height: 100%;
+  background: var(--grad-text);
+  border-radius: 2px;
+  transition: width 1.2s var(--ease-out);
+}
+
+/* Education timeline */
+.edu-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 20px;
+  border-left: 1px solid var(--border);
+  position: relative;
+}
+
+.edu-item {
+  position: relative;
+  padding: 0 0 28px 24px;
+}
+
+.edu-item:last-child {
+  padding-bottom: 0;
+}
+
+.edu-dot {
+  position: absolute;
+  left: -5px;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--border-2);
+  border: 2px solid var(--bg);
+  transition: background var(--dur-med) ease;
+}
+
+.edu-item.current .edu-dot {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.edu-degree {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 4px;
+}
+
+.edu-institution {
+  font-size: 0.88rem;
+  color: var(--accent-2);
+  margin-bottom: 2px;
+}
+
+.edu-university {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.edu-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.edu-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edu-pct {
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.edu-current-badge {
+  background: var(--accent-bg);
+  color: var(--accent-2);
+  border: 1px solid var(--accent-border);
+  padding: 1px 8px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-card-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,144 @@
+/* Contact.css */
+
+.contact-section { position: relative; }
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Left */
+.contact-desc {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.75;
+  margin-top: 16px;
+  margin-bottom: 36px;
+  max-width: 440px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all var(--dur-med) ease;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  transform: translateX(4px);
+}
+
+.cl-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--dur-med) ease;
+}
+
+.contact-link:hover .cl-icon {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.cl-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+  font-family: var(--font-heading);
+}
+
+.cl-value {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  word-break: break-all;
+}
+
+/* CTA Card */
+.contact-cta-card {
+  position: sticky;
+  top: 90px;
+  overflow: hidden;
+}
+
+.cta-glow {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(155,93,229,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-body {
+  position: relative;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cta-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-text {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.cta-btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.cta-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .contact-inner {
+    grid-template-columns: 1fr;
+  }
+  .contact-cta-card {
+    position: static;
+  }
+}

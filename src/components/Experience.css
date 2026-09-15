@@ -1,0 +1,142 @@
+/* Experience.css */
+
+.experience-section { position: relative; }
+
+.exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Experience card */
+.exp-card {
+  display: flex;
+  gap: 20px;
+  padding: 28px;
+  margin-bottom: 16px;
+}
+
+.exp-card:last-child { margin-bottom: 0; }
+
+.exp-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.exp-content { flex: 1; }
+
+.exp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.exp-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 4px;
+}
+
+.exp-company a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.88rem;
+  color: var(--accent-2);
+  transition: color var(--dur-fast) ease;
+}
+
+.exp-company a:hover { color: var(--accent-2); opacity: 0.8; }
+
+.exp-responsibilities {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exp-responsibilities li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.check-icon {
+  color: var(--accent-2);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Certifications */
+.certs-col { position: sticky; top: 90px; }
+
+.certs-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.cert-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cert-badge {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.cert-body { flex: 1; }
+
+.cert-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 3px;
+}
+
+.cert-issuer {
+  font-size: 0.8rem;
+  color: var(--accent-2);
+}
+
+.cert-arrow {
+  color: var(--text-muted);
+  transition: color var(--dur-fast) ease, transform var(--dur-fast) ease;
+}
+
+.cert-card:hover .cert-arrow {
+  color: var(--accent-2);
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 900px) {
+  .exp-grid { grid-template-columns: 1fr; }
+  .certs-col { position: static; }
+}

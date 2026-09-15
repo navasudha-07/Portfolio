@@ -1,0 +1,103 @@
+/* Skills.css */
+
+.skills-section {
+  position: relative;
+}
+
+/* Highlight cards */
+.skills-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.skill-highlight {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  cursor: default;
+}
+
+.sh-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--skill-color) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--skill-color) 30%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--skill-color);
+  flex-shrink: 0;
+}
+
+.sh-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 3px;
+}
+
+.sh-desc {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+}
+
+/* Skill groups */
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.skill-group {
+  padding: 20px 22px;
+}
+
+.sg-label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+
+.sg-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  display: inline-flex;
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-heading);
+  background: color-mix(in srgb, var(--skill-color) 10%, transparent);
+  color: color-mix(in srgb, var(--skill-color) 85%, #fff);
+  border: 1px solid color-mix(in srgb, var(--skill-color) 25%, transparent);
+  transition: background var(--dur-fast) ease;
+}
+
+.skill-tag:hover {
+  background: color-mix(in srgb, var(--skill-color) 20%, transparent);
+}
+
+@media (max-width: 900px) {
+  .skill-groups { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .skills-highlights { grid-template-columns: 1fr; }
+  .skill-groups { grid-template-columns: 1fr; }
+}
