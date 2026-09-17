@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, MapPin, Mail, Phone, Calendar, ExternalLink } from 'lucide-react'
-import { personal, education, languages } from '../data/portfolioData'
+import { personal, education } from '../data/portfolioData'
 import './About.css'
 
 const fadeUp = (delay = 0) => ({
@@ -21,53 +21,9 @@ export default function About() {
         </motion.div>
 
         <div className="about-grid">
-          {/* Contact card */}
-          <motion.div className="glass-card about-card" {...fadeUp(0.1)}>
-            <h3 className="about-card-title">Get In Touch</h3>
-            <ul className="contact-list">
-              <li>
-                <Mail size={15} className="ci-icon" />
-                <a href={`mailto:${personal.email}`} id="about-email">{personal.email}</a>
-              </li>
-              <li>
-                <Phone size={15} className="ci-icon" />
-                <a href={`tel:${personal.phone}`} id="about-phone">{personal.phone}</a>
-              </li>
-              <li>
-                <ExternalLink size={15} className="ci-icon" />
-                <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" id="about-linkedin">
-                  {personal.linkedinHandle}
-                </a>
-              </li>
-              <li>
-                <ExternalLink size={15} className="ci-icon" />
-                <a href={personal.github} target="_blank" rel="noopener noreferrer" id="about-github">
-                  {personal.githubHandle}
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-
-          {/* Language card */}
-          <motion.div className="glass-card about-card" {...fadeUp(0.15)}>
-            <h3 className="about-card-title">Languages</h3>
-            <div className="lang-list">
-              {languages.map(lang => (
-                <div key={lang.name} className="lang-item">
-                  <div className="lang-header">
-                    <span className="lang-name">{lang.name}</span>
-                    <span className="lang-dots">
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <span key={i} className={`lang-dot${i < lang.level ? ' filled' : ''}`} />
-                      ))}
-                    </span>
-                  </div>
-                  <div className="lang-bar">
-                    <div className="lang-fill" style={{ width: `${(lang.level / 5) * 100}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Extra Content */}
+          <motion.div className="glass-card about-card about-card-wide" style={{ padding: '2rem' }} {...fadeUp(0.1)}>
+            <p style={{ fontSize: '1.05rem', lineHeight: '1.8' }}>{personal.extraContent}</p>
           </motion.div>
 
           {/* Education */}
@@ -83,7 +39,6 @@ export default function About() {
                     {edu.university && <div className="edu-university">{edu.university}</div>}
                     <div className="edu-meta">
                       <span><Calendar size={12} /> {edu.period}</span>
-                      {edu.percentage && <span className="edu-pct">{edu.percentage}</span>}
                       {edu.current && <span className="edu-current-badge">Current</span>}
                     </div>
                   </div>

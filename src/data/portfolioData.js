@@ -14,6 +14,7 @@ export const personal = {
   githubHandle: "navasudha-07",
   summary:
     "Aspiring to start my career in the IT industry where I can utilize my knowledge in programming and web technologies to develop efficient solutions and gain practical experience.",
+  extraContent: "I am passionate about creating visually stunning and highly functional interfaces. I believe in continuous learning, exploring new design trends, and applying them to real-world projects. From conceptualization to final execution, I focus on building digital experiences that are both beautiful and user-friendly.",
   tagline: "Designing Digital Experiences That Feel Simple.",
 };
 
@@ -145,7 +146,6 @@ export const education = [
     institution: "Pope's College",
     university: "Manonmaniam Sundaranar University",
     period: "2022 – 2025",
-    percentage: "75%",
     current: false,
   },
   {
@@ -153,7 +153,6 @@ export const education = [
     institution: "Subbiah Vidhyalayam Higher Secondary School",
     university: "",
     period: "2021 – 2022",
-    percentage: "70%",
     current: false,
   },
 ];

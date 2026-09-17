@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, GitFork, Globe, Sparkles } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { personal } from '../data/portfolioData'
 import './Hero.css'
 
@@ -67,7 +68,7 @@ export default function Hero() {
             id="hero-linkedin"
             aria-label="LinkedIn Profile"
           >
-            <Globe size={15} />
+            <FaLinkedin size={15} />
             <span>LinkedIn</span>
           </a>
           <a
@@ -78,7 +79,7 @@ export default function Hero() {
             id="hero-github"
             aria-label="GitHub Profile"
           >
-            <GitFork size={15} />
+            <FaGithub size={15} />
             <span>GitHub</span>
           </a>
         </motion.div>

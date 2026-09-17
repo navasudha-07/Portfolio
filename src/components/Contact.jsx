@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mail, Phone, Globe, GitFork, Send } from 'lucide-react'
+import { FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaPaperPlane } from 'react-icons/fa'
 import { personal } from '../data/portfolioData'
 import './Contact.css'
 
@@ -26,28 +26,28 @@ export default function Contact() {
 
             <div className="contact-links">
               <a href={`mailto:${personal.email}`} className="contact-link" id="contact-email">
-                <div className="cl-icon"><Mail size={18} /></div>
+                <div className="cl-icon"><FaEnvelope size={18} /></div>
                 <div>
                   <div className="cl-label">Email</div>
                   <div className="cl-value">{personal.email}</div>
                 </div>
               </a>
               <a href={`tel:${personal.phone}`} className="contact-link" id="contact-phone">
-                <div className="cl-icon"><Phone size={18} /></div>
+                <div className="cl-icon"><FaPhone size={18} /></div>
                 <div>
                   <div className="cl-label">Phone</div>
                   <div className="cl-value">{personal.phone}</div>
                 </div>
               </a>
               <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" className="contact-link" id="contact-li">
-                <div className="cl-icon"><Globe size={18} /></div>
+                <div className="cl-icon"><FaLinkedin size={18} /></div>
                 <div>
                   <div className="cl-label">LinkedIn</div>
                   <div className="cl-value">{personal.linkedinHandle}</div>
                 </div>
               </a>
               <a href={personal.github} target="_blank" rel="noopener noreferrer" className="contact-link" id="contact-gh">
-                <div className="cl-icon"><GitFork size={18} /></div>
+                <div className="cl-icon"><FaGithub size={18} /></div>
                 <div>
                   <div className="cl-label">GitHub</div>
                   <div className="cl-value">{personal.githubHandle}</div>
@@ -75,7 +75,7 @@ export default function Contact() {
                 className="btn btn-primary cta-btn"
                 id="contact-hire-btn"
               >
-                <Send size={16} />
+                <FaPaperPlane size={16} />
                 Send a Message
               </a>
               <p className="cta-note">Usually responds within 24 hours</p>

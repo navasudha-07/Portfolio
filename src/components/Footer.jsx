@@ -1,4 +1,4 @@
-import { GitFork, Globe, Mail } from 'lucide-react'
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { personal } from '../data/portfolioData'
 import './Footer.css'
 
@@ -16,13 +16,13 @@ export default function Footer() {
 
         <div className="footer-socials">
           <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" id="footer-linkedin">
-          <Globe size={18} />
+          <FaLinkedin size={18} />
           </a>
           <a href={personal.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" id="footer-github">
-          <GitFork size={18} />
+          <FaGithub size={18} />
           </a>
           <a href={`mailto:${personal.email}`} aria-label="Email" id="footer-email">
-            <Mail size={18} />
+            <FaEnvelope size={18} />
           </a>
         </div>
 

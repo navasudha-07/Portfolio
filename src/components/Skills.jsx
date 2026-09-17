@@ -2,6 +2,19 @@ import { motion } from 'framer-motion'
 import { Palette, Globe, Zap, Users } from 'lucide-react'
 import { skills } from '../data/portfolioData'
 import './Skills.css'
+import { FaFigma, FaHtml5, FaPaintBrush, FaFileWord, FaFilePowerpoint } from 'react-icons/fa';
+import { MdComputer, MdLightbulbOutline, MdGroup } from 'react-icons/md';
+
+const skillIcons = {
+  Figma: <FaFigma />,
+  Canva: <FaPaintBrush />,
+  HTML: <FaHtml5 />,
+  "MS PowerPoint": <FaFilePowerpoint />,
+  "MS Word": <FaFileWord />,
+  "Basic Computer Knowledge": <MdComputer />,
+  "Problem Solving": <MdLightbulbOutline />,
+  Teamwork: <MdGroup />,
+};
 
 const categoryMeta = {
   design:      { label: 'Design', icon: Palette, color: '#c77dff' },
@@ -29,7 +42,6 @@ export default function Skills() {
           transition={{ duration: 0.65 }}
         >
           <p className="section-label">Skills</p>
-          <h2 className="section-title">What I Work With</h2>
           <p className="section-subtitle">A toolkit built for creating user-centred digital experiences.</p>
         </motion.div>
 
@@ -45,7 +57,7 @@ export default function Skills() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <div className="sh-icon" style={{ '--skill-color': categoryMeta[skill.category]?.color || 'var(--accent-2)' }}>
-                {skill.name[0]}
+                {skillIcons[skill.name] || skill.name[0]}
               </div>
               <div>
                 <div className="sh-name">{skill.name}</div>
