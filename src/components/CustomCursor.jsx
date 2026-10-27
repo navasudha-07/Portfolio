@@ -3,7 +3,6 @@ import './CustomCursor.css'
 
 export default function CustomCursor() {
   const dotRef = useRef(null)
-  const ringRef = useRef(null)
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
@@ -11,7 +10,6 @@ export default function CustomCursor() {
 
   const mousePos = useRef({ x: -100, y: -100 })
   const lastMousePos = useRef({ x: -100, y: -100 })
-  const ringPos = useRef({ x: -100, y: -100 })
   const lastBubbleTime = useRef(0)
 
   useEffect(() => {
@@ -109,21 +107,6 @@ export default function CustomCursor() {
     document.addEventListener('mouseleave', handleMouseLeave)
     document.addEventListener('mouseenter', handleMouseEnter)
 
-    // Trailing fluid lens ring physics loop
-    let animId
-    const render = () => {
-      const ease = 0.16
-      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * ease
-      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * ease
-
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`
-      }
-
-      animId = requestAnimationFrame(render)
-    }
-    animId = requestAnimationFrame(render)
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mousedown', handleMouseDown)
@@ -131,7 +114,6 @@ export default function CustomCursor() {
       document.removeEventListener('mouseleave', handleMouseLeave)
       document.removeEventListener('mouseenter', handleMouseEnter)
       clearInterval(idleInterval)
-      cancelAnimationFrame(animId)
     }
   }, [isVisible])
 
@@ -156,16 +138,10 @@ export default function CustomCursor() {
         </div>
       ))}
 
-      {/* Trailing Fluid Glass Lens */}
-      <div
-        ref={ringRef}
-        className={`cursor-fluid-ring ${isHovered ? 'hovered' : ''} ${isClicked ? 'clicked' : ''}`}
-      />
-
-      {/* Center Precision Focal Dot */}
+      {/* Subtle Aquatic Precision Dot */}
       <div
         ref={dotRef}
-        className={`cursor-focal-dot ${isHovered ? 'hovered' : ''}`}
+        className={`cursor-focal-dot ${isHovered ? 'hovered' : ''} ${isClicked ? 'clicked' : ''}`}
       />
     </div>
   )
