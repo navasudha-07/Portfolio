@@ -1,0 +1,255 @@
+/* ============================================================
+   TANK CREATURES — HD Quality & Draggable Anywhere with Cursor
+   ============================================================ */
+
+/* Independent Floating Doll Entity */
+.tank-doll-entity {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 90px;
+  z-index: 46;
+  pointer-events: auto;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.04s linear;
+  will-change: transform;
+}
+
+.tank-doll-entity.is-dragging {
+  z-index: 60;
+  transition: none !important;
+}
+
+/* Speech Bubble anchored directly to doll entity */
+.tank-doll-entity .tank-speech-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 260px;
+  margin: 0;
+  z-index: 50;
+  cursor: pointer;
+  white-space: normal;
+  text-align: left;
+  line-height: 1.45;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+}
+
+/* Flipped below if doll is dragged near top of viewport */
+.tank-doll-entity .tank-speech-bubble.flipped-below {
+  bottom: auto;
+  top: calc(100% + 12px);
+}
+
+.tank-doll-entity .tank-speech-bubble.axolotl-speech {
+  animation: gentleBob 6s infinite ease-in-out;
+}
+
+.tank-doll-entity .tank-speech-bubble.octopus-speech {
+  animation: gentleBob 7s infinite ease-in-out 0.8s;
+}
+
+/* 3D Gaze Creature Wrapper */
+.creature-wrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  cursor: grab;
+  transition: transform 0.22s var(--ease-elastic), filter 0.25s ease;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
+  will-change: transform;
+}
+
+.is-dragging .creature-wrapper {
+  cursor: grabbing !important;
+  transform: scale(1.1) !important;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 20px rgba(94, 234, 212, 0.55));
+}
+
+.creature-wrapper:hover:not(.is-dragging) {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.creature-wrapper.creature-bounce {
+  animation: creatureJump 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes creatureJump {
+  0% { transform: scale(1) translateY(0); }
+  40% { transform: scale(1.18, 0.85) translateY(-26px); }
+  70% { transform: scale(0.92, 1.1) translateY(-4px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+/* Ultra HD Mascot Avatar Image */
+.hd-mascot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(162, 232, 231, 0.3),
+    inset 0 0 16px rgba(255, 255, 255, 0.4);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  pointer-events: none;
+}
+
+.creature-wrapper:hover .hd-mascot-img {
+  border-color: #ffffff;
+  box-shadow: 
+    0 14px 30px rgba(0, 0, 0, 0.45),
+    0 0 28px rgba(94, 234, 212, 0.6),
+    inset 0 0 20px rgba(255, 255, 255, 0.55);
+}
+
+/* Creature Glow Aura */
+.creature-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  filter: blur(14px);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.creature-wrapper:hover .creature-glow,
+.is-dragging .creature-glow {
+  opacity: 0.95;
+}
+
+/* Hover Drag Grip Indicator Pill */
+.doll-drag-handle {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(8, 30, 34, 0.85);
+  border: 1px solid rgba(162, 232, 231, 0.5);
+  border-radius: 999px;
+  padding: 2px 7px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  color: #5eead4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.creature-wrapper:hover .doll-drag-handle {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.is-dragging .doll-drag-handle {
+  opacity: 1;
+  background: rgba(14, 58, 60, 0.95);
+  border-color: #5eead4;
+  color: #ffffff;
+}
+
+/* ── Seabed Control Dock (Fixed above footer) ── */
+.tank-dolls-control-dock {
+  position: absolute;
+  bottom: 44px;
+  left: 36px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+  user-select: none;
+}
+
+/* Swap Dolls Button */
+.replace-dolls-btn,
+.dock-dolls-btn {
+  background: rgba(14, 58, 60, 0.5);
+  border: 1px solid rgba(162, 232, 231, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s var(--ease-tank);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.replace-dolls-btn:hover,
+.dock-dolls-btn:hover {
+  background: rgba(26, 100, 105, 0.75);
+  border-color: #5eead4;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px rgba(94, 234, 212, 0.4);
+}
+
+.replace-dolls-btn:hover .replace-icon {
+  transform: rotate(180deg);
+  transition: transform 0.4s ease;
+}
+
+/* Helpful Hint */
+.dolls-tip {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(162, 232, 231, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 4px;
+  transition: color 0.25s ease;
+}
+
+.tank-dolls-control-dock:hover .dolls-tip {
+  color: rgba(162, 232, 231, 0.85);
+}
+
+/* Active Dragging Body Class */
+body.is-doll-dragging {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+@media (max-width: 900px) {
+  .tank-dolls-control-dock {
+    left: 20px;
+    bottom: 50px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .dolls-tip {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .tank-doll-entity {
+    transform: scale(0.85) !important;
+  }
+  .dolls-tip {
+    display: none;
+  }
+}

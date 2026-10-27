@@ -1,0 +1,175 @@
+.custom-cursor-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-cursor-container.visible {
+  opacity: 1;
+}
+
+/* Precision Center Focal Dot */
+.cursor-focal-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background-color: #5eead4;
+  box-shadow: 0 0 8px #5eead4, 0 0 16px rgba(94, 234, 212, 0.6);
+  pointer-events: none;
+  transition: transform 0.05s ease-out, background-color 0.25s ease, opacity 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-focal-dot.hovered {
+  opacity: 0.35;
+  background-color: #ffffff;
+}
+
+/* Trailing Fluid Glass Ring */
+.cursor-fluid-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  margin-top: -19px;
+  margin-left: -19px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(162, 232, 231, 0.7);
+  background: radial-gradient(
+    circle,
+    rgba(162, 232, 231, 0.12) 0%,
+    rgba(70, 179, 184, 0.06) 65%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 15px rgba(162, 232, 231, 0.35),
+    inset 0 0 10px rgba(162, 232, 231, 0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  pointer-events: none;
+  will-change: transform;
+  transition: width 0.3s var(--ease-tank),
+              height 0.3s var(--ease-tank),
+              margin 0.3s var(--ease-tank),
+              border-color 0.3s var(--ease-tank),
+              background 0.3s var(--ease-tank);
+}
+
+.cursor-fluid-ring.hovered {
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  margin-left: -30px;
+  border-color: rgba(255, 255, 255, 0.95);
+  background: radial-gradient(
+    circle,
+    rgba(94, 234, 212, 0.25) 0%,
+    rgba(162, 232, 231, 0.16) 60%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 25px rgba(94, 234, 212, 0.6),
+    inset 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.cursor-fluid-ring.clicked {
+  transform: scale(0.85);
+  border-color: #5eead4;
+}
+
+body.is-doll-dragging .cursor-fluid-ring {
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  border-color: #5eead4;
+  background: radial-gradient(
+    circle,
+    rgba(94, 234, 212, 0.35) 0%,
+    rgba(162, 232, 231, 0.2) 60%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 30px rgba(94, 234, 212, 0.8),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
+  animation: tractorPulse 1s infinite alternate ease-in-out;
+}
+
+@keyframes tractorPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+/* ── Aquatic Bubbles Appearing & Disappearing on Cursor Movement ── */
+.cursor-aquatic-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(215, 250, 248, 0.6) 28%,
+    rgba(94, 234, 212, 0.2) 65%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    0 0 10px rgba(162, 232, 231, 0.45),
+    inset 0 0 6px rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation-name: bubbleBirthFloatPop;
+  animation-timing-function: cubic-bezier(0.25, 0.8, 0.3, 1);
+  animation-fill-mode: forwards;
+}
+
+/* Specular Gleam on Bubble Surface */
+.bubble-gleam {
+  position: absolute;
+  top: 18%;
+  left: 22%;
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  filter: blur(0.5px);
+}
+
+@keyframes bubbleBirthFloatPop {
+  0% {
+    transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(0.2);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) translate3d(calc(var(--drift-x) * 0.15), calc(var(--float-y) * 0.15), 0) scale(1);
+  }
+  65% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) translate3d(calc(var(--drift-x) * 0.65), calc(var(--float-y) * 0.65), 0) scale(1.1);
+  }
+  88% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) translate3d(var(--drift-x), var(--float-y), 0) scale(1.18);
+  }
+  100% {
+    transform: translate(-50%, -50%) translate3d(var(--drift-x), calc(var(--float-y) - 8px), 0) scale(1.6);
+    opacity: 0;
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-container {
+    display: none !important;
+  }
+}

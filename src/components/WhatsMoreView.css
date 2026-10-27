@@ -1,0 +1,311 @@
+.whats-more-container {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 85px 48px 140px 48px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  animation: fadeInMore 0.5s var(--ease-tank);
+}
+
+@keyframes fadeInMore {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.whats-more-header {
+  margin-bottom: 24px;
+}
+
+.whats-more-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 400;
+  color: #ff7657; /* Coral editorial title matching Crechetank */
+  line-height: 1;
+  margin-bottom: 8px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.whats-more-lead {
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  max-width: 650px;
+}
+
+/* Floating Contact Pearls Stream */
+.pearls-stream-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 36px;
+  padding: 10px 0;
+}
+
+.pearl-copied-toast {
+  position: absolute;
+  top: -24px;
+  background: #5eead4;
+  color: #062024;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  pointer-events: none;
+  animation: toastPop 0.3s ease;
+}
+
+@keyframes toastPop {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Grid of Cards */
+.whats-more-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  padding-bottom: 40px;
+}
+
+.wm-card {
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wm-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(162, 232, 231, 0.15);
+  padding-bottom: 10px;
+}
+
+.card-accent-icon {
+  color: var(--text-accent);
+}
+
+.wm-card-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+/* Bio Card */
+.bio-summary {
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.bio-extra {
+  font-size: 0.86rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.bio-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.bio-badge {
+  background: rgba(162, 232, 231, 0.12);
+  border: 1px solid rgba(162, 232, 231, 0.25);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+}
+
+/* Experience Card */
+.wm-exp-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wm-exp-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wm-role {
+  font-size: 1.35rem;
+  color: #ffffff;
+}
+
+.wm-company {
+  font-size: 0.82rem;
+  color: var(--text-accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wm-company:hover {
+  text-decoration: underline;
+}
+
+.wm-exp-meta {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+
+.wm-exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.wm-exp-bullets li::before {
+  content: '→ ';
+  color: var(--text-accent);
+}
+
+/* Education Timeline */
+.wm-edu-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.wm-edu-item {
+  display: flex;
+  gap: 14px;
+}
+
+.wm-edu-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-accent);
+  margin-top: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--text-accent);
+}
+
+.wm-degree {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.wm-institution {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.wm-sub-uni {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.wm-period {
+  font-size: 0.74rem;
+  color: var(--text-accent);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+/* Skills Toolkit Card */
+.wm-skills-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.wm-skill-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(14, 58, 60, 0.4);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(162, 232, 231, 0.15);
+  font-size: 0.82rem;
+}
+
+.skill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--text-accent);
+  flex-shrink: 0;
+}
+
+.skill-name {
+  color: #ffffff;
+  font-weight: 500;
+  min-width: 110px;
+}
+
+.skill-desc {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+}
+
+.wm-contact-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.wm-email-btn {
+  flex: 1;
+  font-size: 0.78rem;
+  padding: 8px 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wm-copy-btn {
+  padding: 8px 16px;
+}
+
+@media (max-width: 640px) {
+  .whats-more-container {
+    padding: 75px 20px 80px 20px;
+  }
+  .whats-more-grid {
+    grid-template-columns: 1fr;
+  }
+}

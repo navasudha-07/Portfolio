@@ -1,0 +1,498 @@
+/* ============================================================
+   ROTATING KIOSK PRESENTATION — 3D Turntable & Glass Showcase
+   ============================================================ */
+
+.kiosk-presentation-stage {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px;
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(22, 54, 58, 0.5) 0%,
+    rgba(8, 28, 32, 0.85) 60%,
+    rgba(4, 18, 20, 0.95) 100%
+  );
+  border: 1.5px solid rgba(162, 232, 231, 0.25);
+  border-radius: 20px;
+  box-shadow: 
+    0 24px 50px rgba(0, 0, 0, 0.6),
+    0 0 35px rgba(70, 179, 184, 0.2),
+    inset 0 0 25px rgba(162, 232, 231, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  user-select: none;
+}
+
+.kiosk-presentation-stage.is-compact {
+  max-width: 100%;
+  padding: 12px 16px;
+  border-radius: 16px;
+}
+
+/* Ambient Radial Glow */
+.kiosk-ambient-glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(201, 24, 43, 0.25) 0%, rgba(245, 158, 11, 0.15) 45%, transparent 70%);
+  filter: blur(35px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Header Controls Bar */
+.kiosk-controls-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.kiosk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: #5eead4;
+  background: rgba(94, 234, 212, 0.1);
+  border: 1px solid rgba(94, 234, 212, 0.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.kiosk-action-toggles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kiosk-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 4px 11px;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.kiosk-toggle-btn:hover {
+  background: rgba(94, 234, 212, 0.15);
+  border-color: #5eead4;
+  color: #ffffff;
+}
+
+.kiosk-toggle-btn.active-toggle {
+  background: rgba(94, 234, 212, 0.25);
+  border-color: #5eead4;
+  color: #5eead4;
+  box-shadow: 0 0 14px rgba(94, 234, 212, 0.3);
+}
+
+.kiosk-toggle-btn .spin-icon {
+  animation: spinSlow 3s linear infinite;
+}
+
+@keyframes spinSlow {
+  100% { transform: rotate(360deg); }
+}
+
+/* ── 3D Viewport ── */
+.kiosk-3d-viewport {
+  position: relative;
+  z-index: 5;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1100px;
+  perspective-origin: 50% 42%;
+}
+
+.is-compact .kiosk-3d-viewport {
+  height: 255px;
+}
+
+/* 3D Turntable Frame */
+.kiosk-3d-turntable {
+  position: relative;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Continuous 3D Rotating Animation */
+.kiosk-3d-turntable.animating-orbit {
+  animation: kioskSmoothRotate 10s ease-in-out infinite alternate;
+}
+
+@keyframes kioskSmoothRotate {
+  0% {
+    transform: rotateX(calc(var(--tilt-x, 0deg) + 3deg)) rotateY(calc(var(--tilt-y, 0deg) - 18deg));
+  }
+  50% {
+    transform: rotateX(calc(var(--tilt-x, 0deg) - 2deg)) rotateY(calc(var(--tilt-y, 0deg) + 2deg));
+  }
+  100% {
+    transform: rotateX(calc(var(--tilt-x, 0deg) + 3deg)) rotateY(calc(var(--tilt-y, 0deg) + 20deg));
+  }
+}
+
+/* Modern Kiosk Device Shell */
+.kiosk-device-shell {
+  position: relative;
+  width: 440px;
+  background: linear-gradient(145deg, #2a3138 0%, #151a1e 40%, #0d1013 100%);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 18px;
+  padding: 10px 10px 14px 10px;
+  box-shadow: 
+    0 20px 45px rgba(0, 0, 0, 0.75),
+    0 0 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  transform-style: preserve-3d;
+  transition: box-shadow 0.3s ease;
+}
+
+.is-compact .kiosk-device-shell {
+  width: 360px;
+  padding: 8px 8px 12px 8px;
+}
+
+/* Top Bezel */
+.kiosk-bezel-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 3px 0 6px 0;
+}
+
+.kiosk-camera-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 4px rgba(94, 234, 212, 0.4);
+}
+
+.kiosk-sensor-bar {
+  width: 24px;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Screen Viewport */
+.kiosk-screen-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9.8;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000000;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.kiosk-screen-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.kiosk-device-shell:hover .kiosk-screen-img {
+  transform: scale(1.02);
+}
+
+/* Glass Glare Sweep */
+.kiosk-glass-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.1) 22%,
+    transparent 42%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Floating Screen Feature Badge */
+.kiosk-screen-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(14, 24, 28, 0.85);
+  border: 1px solid rgba(162, 232, 231, 0.5);
+  color: #5eead4;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Bottom Bezel */
+.kiosk-bezel-bottom {
+  text-align: center;
+  padding-top: 6px;
+}
+
+.kiosk-hardware-brand {
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+/* Kiosk Stand Neck & Pedestal */
+.kiosk-stand-neck {
+  width: 48px;
+  height: 22px;
+  background: linear-gradient(to right, #1f252b, #38424c, #1f252b);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateZ(-8px);
+}
+
+.kiosk-stand-pedestal {
+  width: 140px;
+  height: 10px;
+  background: linear-gradient(to bottom, #303942, #14181c);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.8);
+  transform: translateZ(-16px);
+}
+
+.kiosk-ground-shadow {
+  width: 280px;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, transparent 70%);
+  margin-top: -6px;
+  filter: blur(5px);
+  transform: translateZ(-25px);
+}
+
+/* ── 3D Cylindrical Deck Ring Mode ── */
+.kiosk-3d-deck-ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.12s ease-out;
+}
+
+.kiosk-3d-deck-ring.deck-rotating {
+  animation: deck3DSpin 24s linear infinite;
+}
+
+@keyframes deck3DSpin {
+  0% {
+    transform: rotateX(var(--tilt-x, 0deg)) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(var(--tilt-x, 0deg)) rotateY(360deg);
+  }
+}
+
+.deck-card-wrapper {
+  position: absolute;
+  width: 180px;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: border-color 0.25s ease, transform 0.3s ease;
+  transform-style: preserve-3d;
+  background: #000;
+}
+
+.deck-card-wrapper:hover,
+.deck-card-wrapper.selected-deck-card {
+  border-color: #5eead4;
+  box-shadow: 0 0 25px rgba(94, 234, 212, 0.5), 0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+.deck-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.deck-card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 4px 6px;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 0.55rem;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Screen Navigation Tabs ── */
+.kiosk-navigation-bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.kiosk-nav-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.kiosk-nav-arrow:hover {
+  background: rgba(94, 234, 212, 0.25);
+  border-color: #5eead4;
+  transform: scale(1.08);
+}
+
+.kiosk-screen-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  max-width: 80%;
+  scrollbar-width: none;
+}
+
+.kiosk-screen-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.kiosk-tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.kiosk-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.kiosk-tab-btn.active-kiosk-tab {
+  background: rgba(201, 24, 43, 0.35);
+  border-color: #f87171;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(248, 113, 113, 0.35);
+}
+
+.kiosk-tab-btn .tab-number {
+  color: #5eead4;
+  font-weight: 600;
+}
+
+/* ── Active Screen Metadata Card ── */
+.kiosk-meta-card {
+  position: relative;
+  z-index: 10;
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: rgba(10, 34, 38, 0.7);
+  border: 1px solid rgba(162, 232, 231, 0.25);
+  border-radius: 12px;
+}
+
+.kiosk-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.kiosk-meta-title {
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.kiosk-meta-counter {
+  font-size: 0.7rem;
+  color: #5eead4;
+  letter-spacing: 0.12em;
+}
+
+.kiosk-meta-sub {
+  font-size: 0.75rem;
+  color: var(--text-accent);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.kiosk-meta-desc {
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .kiosk-device-shell {
+    width: 290px;
+  }
+  .kiosk-3d-viewport {
+    height: 260px;
+  }
+}

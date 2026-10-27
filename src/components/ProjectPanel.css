@@ -1,0 +1,325 @@
+/* Backdrop */
+.panel-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 18, 20, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.panel-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Crechetank Slide-in Project Panel */
+.project-panel {
+  z-index: 110;
+  pointer-events: auto;
+  background: 
+    radial-gradient(circle at 100% 0%, rgba(26, 100, 105, 0.35) 0%, transparent 60%),
+    rgba(10, 38, 42, 0.88);
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  border-left: 1px solid rgba(162, 232, 231, 0.25);
+  will-change: transform;
+  width: min(66.6vw, 780px);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  box-shadow: -20px 0 60px rgba(4, 18, 20, 0.65);
+  transform: translateX(105%);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.project-panel.is-open {
+  transform: translateX(0);
+}
+
+.panel-scroll {
+  overscroll-behavior: contain;
+  max-width: 680px;
+  height: 100%;
+  padding: 8vh 4.5vw 8vh 4.5vw;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Circular Close Button */
+.panel-close {
+  z-index: 20;
+  appearance: none;
+  width: 38px;
+  height: 38px;
+  color: #ffffff;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(162, 232, 231, 0.3);
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.25s, border-color 0.25s, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.25s;
+  position: absolute;
+  top: 3.5vh;
+  left: 2.2vw;
+}
+
+.panel-close:hover {
+  color: #ffffff;
+  border-color: #f87171;
+  background: rgba(248, 113, 113, 0.3);
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Panel Title in Editorial Serif */
+.panel-title {
+  color: #ff7657; /* Warm coral matching Crechetank headline color */
+  margin: 0;
+  font-size: clamp(34px, 4.4vw, 56px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.panel-tagline {
+  color: rgba(240, 251, 250, 0.85);
+  margin: 12px 0 0;
+  font-size: clamp(17px, 1.4vw, 22px);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.panel-meta-line {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+  border-bottom: 1px solid rgba(162, 232, 231, 0.2);
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+  padding-bottom: 18px;
+  font-size: 10px;
+  display: flex;
+}
+
+/* Panel Media Feature Box */
+.panel-media {
+  aspect-ratio: 16 / 9;
+  background: rgba(4, 18, 20, 0.4);
+  border: 1px solid rgba(162, 232, 231, 0.25);
+  border-radius: 18px;
+  width: 100%;
+  margin-top: 26px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.panel-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.panel-media-reflection {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Panel Summary */
+.panel-summary {
+  color: var(--text-secondary);
+  margin: 24px 0 0;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.6;
+}
+
+/* Highlights Section */
+.panel-highlights-section {
+  margin-top: 24px;
+}
+
+.panel-subheading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  color: var(--text-accent);
+  margin-bottom: 12px;
+}
+
+.panel-highlights-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.panel-highlights-list li::before {
+  content: '✦ ';
+  color: var(--text-accent);
+}
+
+/* Tools Row */
+.panel-tools-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.panel-tool-tag {
+  background: rgba(162, 232, 231, 0.1);
+  border: 1px solid rgba(162, 232, 231, 0.2);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+
+/* Action CTA */
+.panel-actions {
+  margin-top: 32px;
+  padding-bottom: 20px;
+}
+
+.panel-cta {
+  border: 1.5px solid rgba(162, 232, 231, 0.6);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 13px 28px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(14, 58, 60, 0.5);
+  backdrop-filter: blur(10px);
+  transition: all 0.28s var(--ease-tank);
+  display: inline-flex;
+  align-items: center;
+}
+
+.panel-cta:hover {
+  background: #ff7657;
+  border-color: #ff7657;
+  color: #06181c;
+  box-shadow: 0 0 25px rgba(255, 118, 87, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ── Kiosk Feature Presentation & Screen Gallery in Drawer ── */
+.panel-kiosk-feature {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.kiosk-gallery-grid {
+  margin-top: 10px;
+}
+
+.kiosk-screens-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.kiosk-screen-card {
+  background: rgba(8, 28, 32, 0.7);
+  border: 1px solid rgba(162, 232, 231, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.kiosk-screen-card:hover {
+  border-color: #5eead4;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 18px rgba(94, 234, 212, 0.25);
+}
+
+.kiosk-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #000;
+}
+
+.kiosk-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.kiosk-screen-card:hover .kiosk-card-img {
+  transform: scale(1.04);
+}
+
+.kiosk-card-num {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #5eead4;
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+.kiosk-card-info {
+  padding: 12px;
+}
+
+.kiosk-card-title {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.kiosk-card-desc {
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .project-panel {
+    width: 100vw;
+  }
+  .panel-scroll {
+    padding: 11vh 6vw 10vh;
+  }
+  .panel-close {
+    top: 3vh;
+    left: auto;
+    right: 5vw;
+  }
+}

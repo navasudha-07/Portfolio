@@ -1,0 +1,145 @@
+.splash-enter-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background: radial-gradient(
+    circle at 50% 30%,
+    #71c2c7 0%,
+    #53afb5 35%,
+    #328a90 70%,
+    #175459 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.75s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.75s ease;
+  overflow: hidden;
+}
+
+.splash-enter-screen.diving {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-water-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  pointer-events: none;
+}
+
+.splash-wave {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.splash-center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  padding: 24px;
+}
+
+.splash-title {
+  margin-bottom: 28px;
+  user-select: none;
+}
+
+.splash-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 34px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #5eead4;
+  box-shadow: 0 0 10px #5eead4;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.splash-enter-btn {
+  padding: 14px 44px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.35s var(--ease-tank);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.splash-enter-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: #ffffff;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 25px rgba(255, 255, 255, 0.5);
+}
+
+.splash-enter-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.splash-hint {
+  margin-top: 32px;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+}
+
+/* Bubbles on splash screen */
+.splash-bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.s-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.9), rgba(162,232,231,0.3));
+  box-shadow: 0 0 6px rgba(255,255,255,0.5);
+  animation: splashBubble 8s infinite linear;
+}
+
+.b1 { width: 12px; height: 12px; left: 20%; bottom: 15%; animation-duration: 9s; }
+.b2 { width: 18px; height: 18px; left: 35%; bottom: 5%; animation-duration: 11s; animation-delay: 2s; }
+.b3 { width: 10px; height: 10px; left: 65%; bottom: 25%; animation-duration: 8s; animation-delay: 1s; }
+.b4 { width: 22px; height: 22px; left: 78%; bottom: 10%; animation-duration: 12s; animation-delay: 3s; }
+.b5 { width: 14px; height: 14px; left: 50%; bottom: 2%; animation-duration: 10s; animation-delay: 4s; }
+
+@keyframes splashBubble {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% { transform: translateY(-90vh) scale(1.1); opacity: 0; }
+}

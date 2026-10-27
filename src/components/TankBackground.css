@@ -1,0 +1,150 @@
+.tank-background-container {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  cursor: crosshair;
+  z-index: 0;
+}
+
+/* Deep water column */
+.water-depths {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 15%,
+    #175459 0%,
+    #0f3d41 35%,
+    #0a272b 70%,
+    #051518 100%
+  );
+  z-index: 1;
+}
+
+/* Water Surface Wave */
+.water-surface-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 110px;
+  z-index: 5;
+  pointer-events: none;
+  animation: waveSway 14s infinite ease-in-out;
+}
+
+.wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Sunlight God Rays */
+.sunlight-rays {
+  position: absolute;
+  top: -10%;
+  left: 10%;
+  width: 80%;
+  height: 90%;
+  pointer-events: none;
+  z-index: 3;
+  display: flex;
+  justify-content: space-around;
+  filter: blur(12px);
+  mix-blend-mode: screen;
+}
+
+.ray {
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(162, 232, 231, 0.28) 0%,
+    rgba(70, 179, 184, 0.12) 40%,
+    transparent 85%
+  );
+  transform-origin: top center;
+}
+
+.ray-1 {
+  width: 90px;
+  transform: rotate(-12deg);
+  animation: causticsShimmer 9s infinite ease-in-out;
+}
+.ray-2 {
+  width: 140px;
+  transform: rotate(-4deg);
+  animation: causticsShimmer 13s infinite ease-in-out 1s;
+}
+.ray-3 {
+  width: 110px;
+  transform: rotate(8deg);
+  animation: causticsShimmer 11s infinite ease-in-out 2s;
+}
+.ray-4 {
+  width: 80px;
+  transform: rotate(16deg);
+  animation: causticsShimmer 15s infinite ease-in-out 0.5s;
+}
+
+/* Caustics shimmer texture */
+.water-caustics {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(162, 232, 231, 0.08) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.65;
+  animation: causticsShimmer 18s infinite ease-in-out;
+}
+
+/* Ghost swimming silhouettes */
+.tank-creature-silhouette {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  filter: blur(2px);
+}
+
+.fish-1 {
+  top: 26%;
+  animation: fishSwimRight 28s infinite linear;
+}
+
+.fish-2 {
+  top: 52%;
+  animation: fishSwimLeft 38s infinite linear 8s;
+}
+
+.fish-3 {
+  top: 72%;
+  animation: fishSwimRight 24s infinite linear 14s;
+}
+
+/* Rising bubbles */
+.bubbles-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.tank-bubble {
+  position: absolute;
+  bottom: -30px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(162, 232, 231, 0.35) 45%,
+    rgba(70, 179, 184, 0.15) 80%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  box-shadow: 
+    0 0 6px rgba(162, 232, 231, 0.4),
+    inset 0 0 4px rgba(255, 255, 255, 0.5);
+  animation-name: bubbleFloat;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.3, 0.2, 0.6, 1);
+}
